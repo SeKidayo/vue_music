@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="home">主页</div>
+  <div>主页111111111111111</div>
 </template>
 
 <script>
@@ -19,21 +19,9 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 方法集合
-  methods: {
-    async test () {
-      let login = await this.axios.post('/login/cellphone', {
-        phone: 15926196009,
-        password: 'missmiaowsh'
-      })
-      console.log(login)
-      let userInfo = await this.axios.post('/user/detail', { uid: login.data.account.id })
-      console.log(userInfo)
-    }
-  },
+  methods: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-    this.test()
-  },
+  created () {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {},
   beforeCreate () {}, // 生命周期 - 创建之前
@@ -47,4 +35,5 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
+
 </style>
