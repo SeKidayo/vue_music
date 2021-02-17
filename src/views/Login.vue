@@ -54,11 +54,12 @@ export default {
       loginFormRules: {
         // rules下的属性名要和 表单对象下的属性 一致
         // 验证用户名是否合法
-        username: [
-          { required: true, message: '请输入电话号码/邮箱', trigger: 'blur' },
+        phone: [
+          { required: true, message: '请输入电话号码', trigger: 'blur' },
           {
-            min: 6,
-            message: '电话/邮箱格式不正确',
+            min: 7,
+            max: 12,
+            message: '电话格式不正确',
             trigger: 'blur'
           }
         ],
