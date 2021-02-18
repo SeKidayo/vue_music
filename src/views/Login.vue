@@ -58,7 +58,8 @@ export default {
           { required: true, message: '请输入电话号码/邮箱', trigger: 'blur' },
           {
             min: 6,
-            message: '电话/邮箱格式不正确',
+            max: 12,
+            message: '电话格式不正确',
             trigger: 'blur'
           }
         ],
