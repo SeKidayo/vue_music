@@ -4,12 +4,12 @@
     <div class="home_bg"></div>
     <div id="home">
       <el-container>
-        <el-header><Top></Top></el-header>
+        <el-header height="70px"><top></top></el-header>
         <el-container>
-          <el-aside><Left></Left></el-aside>
-          <el-main><Center></Center></el-main>
+          <el-aside><left></left></el-aside>
+          <el-main><center></center></el-main>
         </el-container>
-        <el-footer><Bottom></Bottom></el-footer>
+        <el-footer><bottom></bottom></el-footer>
       </el-container>
     </div>
   </div>
@@ -25,7 +25,7 @@ import Top from './Home/Top'
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {
-    Bottom,
+    bottom: Bottom,
     Center,
     Left,
     Top
@@ -39,9 +39,11 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 方法集合
-  methods: {},
+  methods: {
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () { },
+  created () {
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () { },
   beforeCreate () { }, // 生命周期 - 创建之前
@@ -74,18 +76,25 @@ export default {
   transform: scale(1.1);
 }
 #home {
+  height: 100%;
   width: 1400px;
   margin: 0 auto;
   margin-top: 50px;
   overflow: hidden;
 }
-
-.el-header,
+// .el-container {
+//   height: 100%;
+// }
+.el-header {
+  background-color: #79bbff;
+  color: #eee;
+  text-align: center;
+}
 .el-footer {
-  background-color: #b3c0d1;
+  // background-color: #79bbff;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  // line-height: 80px;
 }
 
 .el-aside {

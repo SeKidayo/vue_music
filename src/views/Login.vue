@@ -48,13 +48,13 @@ export default {
       // 登陆表单的表单对象
       // 这里的属性名不可以乱取,要与后台API文档保持一致
       loginForm: {
-        phone: '',
-        password: ''
+        phone: '15926196009',
+        password: 'missmiaowsh'
       },
       loginFormRules: {
         // rules下的属性名要和 表单对象下的属性 一致
         // 验证用户名是否合法
-        username: [
+        phone: [
           { required: true, message: '请输入电话号码/邮箱', trigger: 'blur' },
           {
             min: 6,
@@ -93,11 +93,14 @@ export default {
         // 格式正确,然后发送请求(通过axios)
         // 下为对象解构 | axios得到结果后才会进行后续操作
         const { data: res } = await this.$http.post('login/cellphone', this.loginForm)
-        console.log(res)
+        // console.log(res)
         // 根据返回的http状态码 打印错误信息(后修改为弹出消息框)
         if (res.code !== 200) return this.$message.error('登陆失败￣へ￣')
         // 设置服务器端传入的cookie
-        document.cookie = res.cookie
+        if (!document.cookie) {
+          document.cookie = res.cookie
+        }
+        // console.log(document.cookie)
         // console.log('登陆成功(*^_^*)')
         this.$message.success('登陆成功φ(゜▽゜*)♪')
         // 2.通过 编程式导航 跳转到后台主页,路由路径是 /home
