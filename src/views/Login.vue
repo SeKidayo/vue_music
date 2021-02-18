@@ -57,11 +57,7 @@ export default {
         phone: [
           { required: true, message: '请输入电话号码', trigger: 'blur' },
           {
-<<<<<<< HEAD
             min: 6,
-=======
-            min: 7,
->>>>>>> home
             max: 12,
             message: '电话格式不正确',
             trigger: 'blur'
