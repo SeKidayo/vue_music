@@ -59,7 +59,7 @@ export default {
           {
             min: 7,
             max: 12,
-            message: '电话/邮箱格式不正确',
+            message: '电话格式不正确',
             trigger: 'blur'
           }
         ],
