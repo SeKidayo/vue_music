@@ -18,7 +18,7 @@
         <el-form-item prop="phone">
           <el-input
             v-model="loginForm.phone"
-            placeholder="请输入电话/邮箱哒!"
+            placeholder="请输入电话哒!"
             prefix-icon="iconfont icon-yonghuming"
           ></el-input>
         </el-form-item>
@@ -55,7 +55,7 @@ export default {
         // rules下的属性名要和 表单对象下的属性 一致
         // 验证用户名是否合法
         phone: [
-          { required: true, message: '请输入电话号码/邮箱', trigger: 'blur' },
+          { required: true, message: '请输入电话号码', trigger: 'blur' },
           {
             min: 7,
             max: 12,
