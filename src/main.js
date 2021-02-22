@@ -9,14 +9,14 @@ import './plugins/element.js'
 import './assets/css/style.css'
 // 导入字体图标
 import './assets/font_83lpfgrbh2w/iconfont.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 // 设置axios请求的根路径
-axios.defaults.baseURL = 'http://localhost:3000'
+// axios.defaults.baseURL = 'http://localhost:3000'  // 移动到network下的request.js下
 // 设置axios请求携带cookie
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true  // 移动到network下的request.js下
 // 挂载axios到Vue的原型上
-Vue.prototype.$http = axios
+// Vue.prototype.$http = axios // 请求封装,不再需要全局挂载
 
 Vue.config.productionTip = false
 

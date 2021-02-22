@@ -6,7 +6,7 @@
       <el-container>
         <el-header height="70px"><top></top></el-header>
         <el-container>
-          <el-aside><left></left></el-aside>
+          <el-aside width="220px"><left></left></el-aside>
           <el-main><center></center></el-main>
         </el-container>
         <el-footer><bottom></bottom></el-footer>
@@ -22,6 +22,9 @@ import Bottom from './Home/Bottom'
 import Center from './Home/Center'
 import Left from './Home/Left'
 import Top from './Home/Top'
+
+import { getAccountInfo } from '../network/getInfo'
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {
@@ -40,9 +43,21 @@ export default {
   watch: {},
   // 方法集合
   methods: {
+    // 初始化账号数据(需要在请求中携带cookie)
+    initDataHome: function () {
+      getAccountInfo().then(res => {
+        if (res.code !== 200) return this.$message.error('获取用户信息失败￣へ￣')
+        console.log(res)
+        // 将 账号数据 保存在 Vuex的store中
+        this.$store.commit('getAccountInfo', res)
+      })
+    }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
+    // 由于axios请求是异步任务,故而子组件不能直接获取到更新的vuex中的state
+    // 解决方案: 子组件 在 watch 中监听
+    this.initDataHome()
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () { },
@@ -77,9 +92,9 @@ export default {
 }
 #home {
   height: 100%;
-  width: 1400px;
+  width: 1200px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 40px;
   overflow: hidden;
 }
 // .el-container {
@@ -91,7 +106,7 @@ export default {
   text-align: center;
 }
 .el-footer {
-  // background-color: #79bbff;
+  background-color: #79bbff;
   color: #333;
   text-align: center;
   // line-height: 80px;
@@ -99,9 +114,9 @@ export default {
 
 .el-aside {
   background-color: #d3dce6;
+  height: 540px;
   color: #333;
   text-align: center;
-  line-height: 200px;
 }
 
 .el-main {

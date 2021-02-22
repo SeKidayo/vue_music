@@ -42,6 +42,9 @@
 </template>
 
 <script>
+
+import { loginByPhone } from '../network/login'
+
 export default {
   data () {
     return {
@@ -87,26 +90,24 @@ export default {
     // 发送请求前的校验 --- validata()方法
     // 根据validata方法的返回值真假决定是否需要发送请求
     login: function () {
-      this.$refs.loginFormRef.validate(async (valid) => {
+      this.$refs.loginFormRef.validate((valid) => {
         // console.log(valid) // 格式正确输出 true; 反之为false
         // 格式错误, 直接return
         if (!valid) return false
-        // 格式正确,然后发送请求(通过axios)
-        // 下为对象解构 | axios得到结果后才会进行后续操作
-        const { data: res } = await this.$http.post('login/cellphone', this.loginForm)
-        // console.log(res)
-        // 根据返回的http状态码 打印错误信息(后修改为弹出消息框)
-        if (res.code !== 200) return this.$message.error('登陆失败￣へ￣')
-        // 设置服务器端传入的cookie
-        if (!document.cookie) {
-          document.cookie = res.cookie
-        }
-        // console.log(document.cookie)
-        // console.log('登陆成功(*^_^*)')
-        this.$message.success('登陆成功φ(゜▽゜*)♪')
-        // 2.通过 编程式导航 跳转到后台主页,路由路径是 /home
-        // this.$router.push()初见
-        this.$router.push('/home')
+        // axios请求
+        loginByPhone(this.loginForm).then(res => {
+          // 根据返回的http状态码 打印错误信息(后修改为弹出消息框)
+          if (res.code !== 200) return this.$message.error('登陆失败￣へ￣')
+          // 保存服务器传入的token(服务器暂不支持)
+          // window.sessionStorage.setItem('token', res.token)
+          // 设置cookie
+          if (!document.cookie) document.cookie = res.cookie
+          // console.log(res)
+          this.$message.success('登陆成功φ(゜▽゜*)♪')
+          // 2.通过 编程式导航 跳转到后台主页,路由路径是 /home
+          // this.$router.push()初见
+          this.$router.push('/home')
+        })
       })
     }
   }
