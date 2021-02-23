@@ -1,8 +1,6 @@
 <!--  -->
 <template>
-  <div class="center">
-    <router-view></router-view>
-  </div>
+  <div>FM</div>
 </template>
 
 <script>

@@ -63,7 +63,7 @@ export default {
 // @import url(); 引入公共css类
 .topleft {
   display: flex;
-  padding-left: 16px;
+  padding-left: 5px;
   // 垂直居中
   position: relative;
   top: 50%;

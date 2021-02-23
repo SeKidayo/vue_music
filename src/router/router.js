@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home'
 import Login from '../views/Login'
+import findMusic from '../components/CenterMenu/recommend/findMusic'
+import FM from '../components/CenterMenu/recommend/personFM'
 
 Vue.use(Router)
 
@@ -10,7 +12,16 @@ const router = new Router({
   routes: [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
-    { path: '/home', component: Home }
+    {
+      path: '/home',
+      component: Home,
+      redirect: '/music',
+      children: [
+        // 注意: 以 / 开头的嵌套路径会被当作一个独立的路径,而不是父级path的子路径
+        { path: '/music', component: findMusic },
+        { path: '/fm', component: FM }
+      ]
+    }
   ]
 })
 

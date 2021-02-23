@@ -2,35 +2,62 @@
 <template>
   <div class="left">
     <el-menu
-      default-active="2"
+      :default-active="currentIndex"
       class="el-menu-vertical-demo"
       router
     >
       <!-- 一级菜单 -->
-      <el-submenu index="1">
+      <el-submenu index="recommend">
         <template slot="title">
-          <i class="el-icon-magic-stick"></i>
-          <span>发现音乐</span>
+          <span class="titlestyle">推荐</span>
         </template>
           <!-- 二级菜单  -->
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+          <!-- el-menu 中 开启 router 模式, 下面的 index 即为 vue-router 中的路由 -->
+          <!-- 下面的index相当于 router-link 中的 to属性, 即 加不加 / 均可, 框架自动添加 -->
+          <el-menu-item index="music">
+            <i class="el-icon-magic-stick"></i>
+            发现音乐
+          </el-menu-item>
+          <el-menu-item index="fm">
+            <i class="el-icon-video-camera"></i>
+            私人FM
+          </el-menu-item>
+          <el-menu-item index="live">
+            <i class="el-icon-video-camera"></i>
+            直播
+          </el-menu-item>
+          <el-menu-item index="video">
+            <i class="el-icon-video-camera"></i>
+            视频
+          </el-menu-item>
+          <el-menu-item index="friends">
+            <i class="el-icon-video-camera"></i>
+            朋友
+          </el-menu-item>
       </el-submenu>
-      <el-submenu index="2">
+      <el-submenu index="createdPlaylists">
         <template slot="title">
-          <i class="el-icon-magic-stick"></i>
-          <span>发现音乐</span>
+          <span class="titlestyle">创建的歌单</span>
         </template>
+          <!-- 待遍历  -->
           <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
       </el-submenu>
-      <el-submenu index="3">
+      <el-submenu index="collectedPlaylists">
         <template slot="title">
-          <i class="el-icon-magic-stick"></i>
-          <span>发现音乐</span>
+          <span class="titlestyle">收藏的歌单</span>
         </template>
+          <!-- 待遍历 -->
           <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+      </el-submenu>
+      <el-submenu index="mymusic">
+        <template slot="title">
+          <span class="titlestyle">我的音乐</span>
+        </template>
+          <el-menu-item index="localmusic">本地音乐</el-menu-item>
+          <el-menu-item index="download">下载管理</el-menu-item>
+          <el-menu-item index="cloud">我的音乐云盘</el-menu-item>
+          <el-menu-item index="audio">我的电台</el-menu-item>
+          <el-menu-item index="collection">我的收藏</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -45,16 +72,28 @@ export default {
   components: {},
   data () {
     // 这里存放数据
-    return {}
+    return {
+      // 当前激活的菜单
+      currentIndex: 'music'
+    }
   },
   // 计算属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
   watch: {},
   // 方法集合
-  methods: {},
+  methods: {
+    // 保存导航栏点击的状态
+    saveDeafultActive () {
+      // console.log(this.$route)
+      window.sessionStorage.setItem('activeMenu', this.$route.path.slice(1))
+      this.currentIndex = sessionStorage.getItem('activeMenu')
+    }
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () { },
+  created () {
+    this.saveDeafultActive()
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () { },
   beforeCreate () { }, // 生命周期 - 创建之前
@@ -68,4 +107,11 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
+.left {
+ height: 100%;
+}
+.titlestyle {
+  float: left;
+  color: #666;
+}
 </style>

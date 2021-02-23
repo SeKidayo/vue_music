@@ -117,6 +117,7 @@ export default {
   height: 540px;
   color: #333;
   text-align: center;
+  overflow: scroll;
 }
 
 .el-main {
