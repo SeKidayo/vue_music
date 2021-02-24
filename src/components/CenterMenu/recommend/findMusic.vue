@@ -17,7 +17,7 @@
       </el-tab-pane>
     </el-tabs>
     <!-- 路由占位符不要写在el-tab-pane中,否则会重复渲染 -->
-    <router-view></router-view>
+    <router-view @activeTabChange="handleChange"></router-view>
   </div>
 </template>
 
@@ -58,6 +58,12 @@ export default {
     // 刷新时正确设置tab激活状态
     activeTabChange () {
       this.activeName = sessionStorage.getItem('activetab') ? sessionStorage.getItem('activetab') : 'index'
+    },
+    // 可操控当前状态
+    handleChange (str) {
+      window.sessionStorage.setItem('activetab', str) // 保证刷新时无误
+      this.activeName = str // 保证tab栏正确激活
+      this.$router.push(`/music/${str}`) // 跳转
     }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）

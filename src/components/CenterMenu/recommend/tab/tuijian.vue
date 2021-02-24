@@ -9,7 +9,8 @@
     </el-carousel>
     <div class="box">
       <div class="title">
-        <span @click="handleTo">推荐歌单</span>
+        <!-- $emit 子向父传值 -->
+        <span @click="$emit('activeTabChange', 'playerlists')">推荐歌单</span>
       </div>
       <el-divider></el-divider>
       <div class="playlists">
@@ -93,11 +94,12 @@ export default {
         console.log(res)
         this.playlists = res.playlists
       })
-    },
-    // 推荐歌单 跳转
-    handleTo () {
-      this.$router.push('/music/playerlists')
     }
+    // 推荐歌单 跳转
+    // handleTo () {
+    //   sessionStorage.setItem('activetab', 'playerlists')
+    //   this.$router.push('/music/playerlists')
+    // }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
