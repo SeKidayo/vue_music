@@ -18,9 +18,9 @@ export default {
     // 这里存放数据
     return {
       // 用户头像地址
-      avatarURL: '',
+      avatarURL: 'https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png',
       // 用户名
-      nickname: ''
+      nickname: 'XXX'
     }
   },
   // 计算属性 类似于data概念
@@ -43,6 +43,7 @@ export default {
     quit () {
       // 简单方法
       this.$router.push('/login')
+      window.sessionStorage.clear()
     }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）

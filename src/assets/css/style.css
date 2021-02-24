@@ -21,9 +21,42 @@ body,
 *::-webkit-scrollbar-thumb {
     background-color: #3394c1;
 }
+/* 菜单栏行内(块)元素左对齐 */
 .el-menu-item {
     /* float: left; */
     margin-left: 10px;
     /* 文本左对齐 */
     text-align: left;
 }
+/* 设置标签页高度 */
+.findMusic .el-tabs__header {
+    line-height: 40px;
+    margin: 0 257px 10px;
+}
+/* 轮播图的宽度 */
+.findMusic .el-carousel {
+    margin: 5px 40px;
+}
+/* .findMusic .el-carousel::-webkit-scrollbar-thumb {
+    background-color: #eee;
+} */
+/* 修改横线的margin */
+.index .el-divider {
+    margin: 8px 0;
+}
+.el-main {
+    height: 540px;
+}
+/* 设置Card大小 */
+.playlists .el-card {
+    background-color: #eee;
+    width: 160px;
+    height: 160px;
+    padding-bottom: 40px;
+    margin-top: 20px;
+}
+.playlists .el-card__body {
+    padding: 0;
+}
+
+

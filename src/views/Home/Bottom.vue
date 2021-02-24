@@ -1,6 +1,12 @@
-<!--  -->
 <template>
-  <div>bottom</div>
+  <div class="bottom">
+    <div class="songInfo">
+      123
+    </div>
+    <div class="audiocontrol">2</div>
+    <div class="playlist">3</div>
+    <audio src=""></audio>
+  </div>
 </template>
 
 <script>
@@ -35,5 +41,13 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
-
+.bottom {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.bottom div {
+  flex: 1;
+}
 </style>

@@ -13,24 +13,24 @@
         </template>
           <!-- 二级菜单  -->
           <!-- el-menu 中 开启 router 模式, 下面的 index 即为 vue-router 中的路由 -->
-          <!-- 下面的index相当于 router-link 中的 to属性, 即 加不加 / 均可, 框架自动添加 -->
-          <el-menu-item index="music">
+          <!-- 下面的index若不添加 / , 则相当于在当前路径后添加此路径, 若加上则相当于一个独立路径 -->
+          <el-menu-item index="/music">
             <i class="el-icon-magic-stick"></i>
             发现音乐
           </el-menu-item>
-          <el-menu-item index="fm">
+          <el-menu-item index="/fm">
             <i class="el-icon-video-camera"></i>
             私人FM
           </el-menu-item>
-          <el-menu-item index="live">
+          <el-menu-item index="/live">
             <i class="el-icon-video-camera"></i>
             直播
           </el-menu-item>
-          <el-menu-item index="video">
+          <el-menu-item index="/video">
             <i class="el-icon-video-camera"></i>
             视频
           </el-menu-item>
-          <el-menu-item index="friends">
+          <el-menu-item index="/friends">
             <i class="el-icon-video-camera"></i>
             朋友
           </el-menu-item>
@@ -40,24 +40,24 @@
           <span class="titlestyle">创建的歌单</span>
         </template>
           <!-- 待遍历  -->
-          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="/1-1">选项1</el-menu-item>
       </el-submenu>
       <el-submenu index="collectedPlaylists">
         <template slot="title">
           <span class="titlestyle">收藏的歌单</span>
         </template>
           <!-- 待遍历 -->
-          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="/1-2">选项2</el-menu-item>
       </el-submenu>
       <el-submenu index="mymusic">
         <template slot="title">
           <span class="titlestyle">我的音乐</span>
         </template>
-          <el-menu-item index="localmusic">本地音乐</el-menu-item>
-          <el-menu-item index="download">下载管理</el-menu-item>
-          <el-menu-item index="cloud">我的音乐云盘</el-menu-item>
-          <el-menu-item index="audio">我的电台</el-menu-item>
-          <el-menu-item index="collection">我的收藏</el-menu-item>
+          <el-menu-item index="/localmusic">本地音乐</el-menu-item>
+          <el-menu-item index="/download">下载管理</el-menu-item>
+          <el-menu-item index="/cloud">我的音乐云盘</el-menu-item>
+          <el-menu-item index="/audio">我的电台</el-menu-item>
+          <el-menu-item index="/collection">我的收藏</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -86,7 +86,10 @@ export default {
     // 保存导航栏点击的状态
     saveDeafultActive () {
       // console.log(this.$route)
-      window.sessionStorage.setItem('activeMenu', this.$route.path.slice(1))
+      // 消除多级地址的干扰
+      var lastIndex = this.$route.path.lastIndexOf('/')
+      var activePath = lastIndex === 0 ? this.$route.path : this.$route.path.slice(0, lastIndex)
+      window.sessionStorage.setItem('activeMenu', activePath)
       this.currentIndex = sessionStorage.getItem('activeMenu')
     }
   },

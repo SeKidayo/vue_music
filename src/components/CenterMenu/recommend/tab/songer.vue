@@ -1,8 +1,6 @@
 <!--  -->
 <template>
-  <div class="center">
-    <router-view></router-view>
-  </div>
+  <div>songer</div>
 </template>
 
 <script>
@@ -37,8 +35,5 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
-.center {
-  height: 100%;
-  overflow: hidden;
-}
+
 </style>

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="center">
-    <router-view></router-view>
+  <div>
+    音乐播放时的大界面
   </div>
 </template>
 
@@ -37,8 +37,5 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
-.center {
-  height: 100%;
-  overflow: hidden;
-}
+
 </style>

@@ -47,7 +47,7 @@ export default {
     initDataHome: function () {
       getAccountInfo().then(res => {
         if (res.code !== 200) return this.$message.error('获取用户信息失败￣へ￣')
-        console.log(res)
+        // console.log(res)
         // 将 账号数据 保存在 Vuex的store中
         this.$store.commit('getAccountInfo', res)
       })
@@ -95,7 +95,6 @@ export default {
   width: 1200px;
   margin: 0 auto;
   margin-top: 40px;
-  overflow: hidden;
 }
 // .el-container {
 //   height: 100%;
@@ -109,6 +108,7 @@ export default {
   background-color: #79bbff;
   color: #333;
   text-align: center;
+  padding: 0;
   // line-height: 80px;
 }
 
@@ -121,9 +121,11 @@ export default {
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: #eee;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  // line-height: 160px;
+  padding: 0;
+  overflow: auto;
 }
 </style>
