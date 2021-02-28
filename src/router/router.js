@@ -6,6 +6,8 @@ import Login from '../views/Login'
 // -----------------------------
 import findMusic from '../components/CenterMenu/recommend/findMusic'
 import FM from '../components/CenterMenu/recommend/personFM'
+import musicPlayer from '../components/CenterMenu/musicplay.vue'
+import songlist from '../components/CenterMenu/songlist.vue'
 // -------------------------------------------
 import index from '../components/CenterMenu/recommend/tab/tuijian'
 import playerlists from '../components/CenterMenu/recommend/tab/playerlists'
@@ -16,6 +18,11 @@ import newsongs from '../components/CenterMenu/recommend/tab/newsongs'
 // -------------------------------------------
 
 Vue.use(Router)
+
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push (location) {
+//   return originalPush.call(this, location).catch(err => err)
+// }
 
 const router = new Router({
   mode: 'history',
@@ -31,7 +38,7 @@ const router = new Router({
         {
           path: '/music',
           component: findMusic,
-          redirect: '/music/index',
+          // redirect: '/music/index',
           children: [
             { path: 'index', component: index },
             { path: 'playerlists', component: playerlists },
@@ -41,7 +48,9 @@ const router = new Router({
             { path: 'songer', component: songer }
           ]
         },
-        { path: '/fm', component: FM }
+        { path: '/fm', component: FM },
+        { path: '/musicplay/:id', component: musicPlayer },
+        { path: '/songlist', component: songlist }
       ]
     }
   ]

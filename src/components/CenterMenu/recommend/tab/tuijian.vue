@@ -14,43 +14,44 @@
       </div>
       <el-divider></el-divider>
       <div class="playlists">
-        <div v-for="item in playlists" :key="item.id">
+        <div v-for="item in playlists" :key="item.id" @click="gotoSonglist(item.id)">
           <el-card shadow="hover">
-            <img :src="item.coverImgUrl" alt="playlist" class="coverimg">
+            <!-- <img :src="item.coverImgUrl" alt="playlist" class="coverimg"> -->
+            <el-image :src="item.coverImgUrl" alt="playlist" class="coverimg" lazy></el-image>
             <div class="listname">{{item.name}}</div>
           </el-card>
         </div>
       </div>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <div>5</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
-      <div>6</div>
+      <!-- -------一个模块-------- -->
+      <div class="title">
+        <!-- $emit 子向父传值 -->
+        <span @click="$emit('activeTabChange', 'playerlists')">最新音乐</span>
+      </div>
+      <el-divider></el-divider>
+      <div class="playlists">
+        <div v-for="item in playlists" :key="item.id" @click="gotoSonglist(item.id)">
+          <el-card shadow="hover">
+            <!-- <img :src="item.coverImgUrl" alt="playlist" class="coverimg"> -->
+            <el-image :src="item.coverImgUrl" alt="playlist" class="coverimg" lazy></el-image>
+            <div class="listname">{{item.name}}</div>
+          </el-card>
+        </div>
+      </div>
+      <!-- ----------------- -->
+      <div class="title">
+        <!-- $emit 子向父传值 -->
+        <span @click="$emit('activeTabChange', 'playerlists')">主播电台</span>
+      </div>
+      <el-divider></el-divider>
+      <div class="playlists">
+        <div v-for="item in playlists" :key="item.id" @click="gotoSonglist(item.id)">
+          <el-card shadow="hover">
+            <!-- <img :src="item.coverImgUrl" alt="playlist" class="coverimg"> -->
+            <el-image :src="item.coverImgUrl" alt="playlist" class="coverimg" lazy></el-image>
+            <div class="listname">{{item.name}}</div>
+          </el-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +59,7 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import { getBanner, getHotPL } from '../../../../network/getInfo'
+import { getBanner, getHotPL, getSonglistInfo, getSongInfo } from '../../../../network/getInfo'
 
 export default {
   // import引入的组件需要注入到对象中才能使用
@@ -91,15 +92,34 @@ export default {
     hotPlaylist (order, limit) {
       getHotPL(order, limit).then(res => {
         if (res.code !== 200) return this.$message.error('获取信息失败￣へ￣')
-        console.log(res)
+        // console.log(res)
         this.playlists = res.playlists
       })
+    },
+    // 点击事件: 跳转到歌单页面
+    gotoSonglist (id) {
+      getSonglistInfo(id).then(res => {
+        // console.log(res.playlist.trackIds)
+        if (res.code !== 200) return this.$message.error('获取歌单信息失败￣へ￣')
+        // 获取歌单中所有歌曲的ID
+        var IDArr = res.playlist.trackIds.map((item) => {
+          return item.id
+        })
+        // console.log(IDArr)
+        if (res.code !== 200) return this.$message.error('获取歌单中歌曲信息失败￣へ￣')
+        // 根据歌曲ID获取歌单中的全部歌曲信息(包括ID)
+        getSongInfo(IDArr).then(res => {
+          // console.log(res)
+          // 跳转到歌单页面,并携带请求参数
+          this.$router.push({
+            path: '/songlist',
+            query: {
+              sid: id
+            }
+          })
+        })
+      })
     }
-    // 推荐歌单 跳转
-    // handleTo () {
-    //   sessionStorage.setItem('activetab', 'playerlists')
-    //   this.$router.push('/music/playerlists')
-    // }
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
@@ -157,6 +177,8 @@ export default {
   display: flex;
   justify-content:  space-between;
   flex-wrap: wrap;
+  margin-top: -18px;
+  margin-bottom: 35px;
   .coverimg {
     cursor: pointer;
     width: 100%;

@@ -19,7 +19,7 @@
             发现音乐
           </el-menu-item>
           <el-menu-item index="/fm">
-            <i class="el-icon-video-camera"></i>
+            <i class="el-icon-news"></i>
             私人FM
           </el-menu-item>
           <el-menu-item index="/live">
@@ -27,11 +27,11 @@
             直播
           </el-menu-item>
           <el-menu-item index="/video">
-            <i class="el-icon-video-camera"></i>
+            <i class="el-icon-camera"></i>
             视频
           </el-menu-item>
           <el-menu-item index="/friends">
-            <i class="el-icon-video-camera"></i>
+            <i class="el-icon-user"></i>
             朋友
           </el-menu-item>
       </el-submenu>
@@ -86,7 +86,7 @@ export default {
     // 保存导航栏点击的状态
     saveDeafultActive () {
       // console.log(this.$route)
-      // 消除多级地址的干扰
+      // 只取一级路径
       var lastIndex = this.$route.path.lastIndexOf('/')
       var activePath = lastIndex === 0 ? this.$route.path : this.$route.path.slice(0, lastIndex)
       window.sessionStorage.setItem('activeMenu', activePath)

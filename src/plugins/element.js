@@ -19,8 +19,10 @@ import {
   TabPane,
   Divider,
   Card,
-  Row,
-  Col
+  Image,
+  Table,
+  TableColumn,
+  Tag
 } from 'element-ui'
 
 Vue.use(Button)
@@ -41,7 +43,9 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Divider)
 Vue.use(Card)
-Vue.use(Col)
-Vue.use(Row)
+Vue.use(Image)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Tag)
 
 Vue.prototype.$message = Message

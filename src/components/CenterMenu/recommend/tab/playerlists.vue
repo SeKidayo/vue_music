@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>tuijian </div>
+  <div class="playlists">tuijian</div>
 </template>
 
 <script>
@@ -35,5 +35,9 @@ export default {
 </script>
 <style lang='less' scoped>
 // @import url(); 引入公共css类
-
+.playlists {
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+}
 </style>

@@ -52,14 +52,23 @@ export default {
     // 标签页切换事件
     handleClick (tab) {
       // 默认接收当前点击的tab信息
+      if (tab.name === sessionStorage.getItem('activetab')) return 'Repeat click'
       this.$router.push(`/music/${tab.name}`)
       window.sessionStorage.setItem('activetab', tab.name)
     },
     // 刷新时正确设置tab激活状态
     activeTabChange () {
       this.activeName = sessionStorage.getItem('activetab') ? sessionStorage.getItem('activetab') : 'index'
+      // 保证在切换回 music menu 时标签正确显示
+      // 初始化时不进行第二次导航, 从其他menu栏切换过来时保持上一次的状态
+      if (('/music/' + this.activeName) !== this.$route.path) {
+        // this.$router.push(`/music/${this.activeName}`).catch(err => {
+        //   console.log(err)
+        // })
+        this.$router.push(`/music/${this.activeName}`)
+      }
     },
-    // 可操控当前状态
+    // 可操控当前状态 --- 子向父传值
     handleChange (str) {
       window.sessionStorage.setItem('activetab', str) // 保证刷新时无误
       this.activeName = str // 保证tab栏正确激活

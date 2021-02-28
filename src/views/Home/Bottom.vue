@@ -44,8 +44,7 @@ export default {
 .bottom {
   display: flex;
   height: 100%;
-  justify-content: space-between;
-  align-items: center;
+  text-align: left;
 }
 .bottom div {
   flex: 1;
